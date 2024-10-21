@@ -1,26 +1,54 @@
 	#include "StudentList.h"
 
 	// Define a constructor to initialize the list. The list starts with no Students
-    StudentList::StudentList() {}
+    StudentList::StudentList(int inStudents = 0) {
+		head = nullptr;
+		tail = nullptr;
+		numStudents = inStudents;
+
+	}
 
 	// return the number of students currently in the list
 	int StudentList::listSize() {
-		return -1;
+		return numStudents;
 	}
 
 	//add a Node with a student to the front (head) of the list.
-	void StudentList::addFront(Student s) {}
+	void StudentList::addFront(Student s) {
+		Node *newNode = new Node();
+		newNode->data = s;
+		newNode->next = head;
+		head = newNode;
+		numStudents++;
+	}
 
 	//add a Node with a student to the back (tail) of the list.
-	void StudentList::addBack(Student s) {}
+	void StudentList::addBack(Student s) {
+		Node *newNode = new Node();
+		newNode->data = s;
+		tail->next = newNode;
+		tail = newNode;
+		numStudents++;
+
+
+	}
 
 	//Print out the names of each student in the list.
-	void StudentList::printList() {}
+	void StudentList::printList() {
+		Node *tmp = head;
+		while(tmp != nullptr){
+			cout << tmp->data;
+			tmp = tmp->next;
+		}
+
+	}
 
 	// Remove the Node with the student at the back (tail) of the list
 	// should not fail if list is empty! Print an error message if this occurs
 	// Don't forget that your head and tail pointers will be null pointers if the list is empty
-	void StudentList::popBack() {}
+	void StudentList::popBack() {
+		Node *tmp = tail;
+	}
 
 	// Remove the Node with the student at the front (head) of the list
 	// should not fail if list is empty! Print an error message if this occurs
