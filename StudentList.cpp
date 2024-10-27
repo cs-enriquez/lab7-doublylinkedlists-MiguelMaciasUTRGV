@@ -89,20 +89,48 @@
 		}
 	}
 
+
 	//insert a student at the position "index".
 	// for this list, count head as index 0
 	// if index is outside of current list range, 
 	// print a message and insert the student at the back of the list
 	// the previous Node at your target index should be moved forward. "For exampe, Node with student at index i, becomes index i+1" 
 	// Remember that you already have methods that can add students to the front or back of list if needed! Don't repeat this code.
-	void StudentList::insertStudent(Student s, int index) {}
+	void StudentList::insertStudent(Student s, int index) {
+		if(index <= 0){
+			addfront(s);
+		}
+		else if(index >= numStudents){
+			addBack(s);
+		}
+		else{
+			Node *newNode = new Node();
+			newNode->data = s;
+
+			Node *tmp = head;
+			for(int x = 0; x < index -1; x++){
+				tmp = tmp->next;
+			}
+			newNode->next = tmp->next;
+			tmp->next = newNode;
+
+			numStudents++;
+		}
+	}
 
 	//find the student with the given id number and return them
 	// if no student matches, print a message 
 	// and create and return a dummy student object
 	Student StudentList::retrieveStudent(int idNum) {
-		Student fixthis;
-		return fixthis;
+		Node *tmp = head;
+		while(tmp != nullptr){
+			if(tmp->data.idNum == idNum){
+				return tmp->data;
+			}
+			tmp = tmp->next;
+		}
+		cout << "Student Id : " << idNum << " Does not match" << endl;
+		return student();
 	}
 
 	// Remove a Node with a student from the list with a given id number
